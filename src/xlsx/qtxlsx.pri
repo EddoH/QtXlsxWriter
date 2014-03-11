@@ -75,5 +75,6 @@ SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxmediafile.cpp \
     $$PWD/xlsxabstractooxmlfile.cpp \
     $$PWD/xlsxchart.cpp \
-    $$PWD/xlsxsimpleooxmlfile.cpp
+    $$PWD/xlsxsimpleooxmlfile.cpp \
+    $$PWD/qzip.cpp
 
