@@ -101,12 +101,9 @@ public:
     bool unmergeCells(const CellRange &range);
     QList<CellRange> mergedCells() const;
 
-
-    bool setColumn(int colFirst, int colLast, double width, const Format &format, bool hidden);
-    bool setColumn(const QString &colFirst, const QString &colLast, double width, const Format &format, bool hidden);
-    bool setColumnWidth(const QString &colFirst, const QString &colLast, double width);
-    bool setColumnFormat(const QString &colFirst, const QString &colLast, const Format &format);
-    bool setColumnHidden(const QString &colFirst, const QString &colLast, bool hidden);
+    bool setColumnWidth(const CellRange& range, double width);
+    bool setColumnFormat(const CellRange& range, const Format &format);
+    bool setColumnHidden(const CellRange& range, bool hidden);
     bool setColumnWidth(int colFirst, int colLast, double width);
     bool setColumnFormat(int colFirst, int colLast, const Format &format);
     bool setColumnHidden(int colFirst, int colLast, bool hidden);
@@ -114,7 +111,8 @@ public:
     Format columnFormat(int column);
     bool isColumnHidden(int column);
 
-    bool setRow(int rowFirst, int rowLast, double height, const Format &format, bool hidden);
+    Q_DECL_DEPRECATED
+    bool setRow(int rowFirst, int rowLast, double height, const Format &format=Format(), bool hidden=false);
     bool setRowHeight(int rowFirst,int rowLast, double height);
     bool setRowFormat(int rowFirst,int rowLast, const Format &format);
     bool setRowHidden(int rowFirst,int rowLast, bool hidden);
@@ -161,11 +159,6 @@ private:
 
     void saveToXmlFile(QIODevice *device) const;
     bool loadFromXmlFile(QIODevice *device);
-
-    QList<QSharedPointer<XlsxRowInfo> > getRowInfoList(int rowFirst, int rowLast);
-    QList <QSharedPointer<XlsxColumnInfo> > getColumnInfoList(int colFirst, int colLast);
-    QList<int> getColumnIndexes(int colFirst, int colLast);
-    bool isColumnRangeValid(int colFirst, int colLast);
 };
 
 QT_END_NAMESPACE_XLSX
