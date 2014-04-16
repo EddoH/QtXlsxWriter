@@ -669,7 +669,7 @@ bool ConditionalFormatting::saveToXml(QXmlStreamWriter &writer) const
     QStringList sqref;
     foreach (CellRange range, ranges())
         sqref.append(range.toString());
-    writer.writeAttribute(QStringLiteral("sqref"), sqref.join(QLatin1Char(' ')));
+    writer.writeAttribute(QStringLiteral("sqref"), " " /*sqref.join(QLatin1Char(' '))*/);
 
     for (int i=0; i<d->cfRules.size(); ++i) {
         const QSharedPointer<XlsxCfRuleData> &rule = d->cfRules[i];

@@ -330,9 +330,9 @@ bool operator !=(const QString &rs1, const RichString &rs2)
     return rs2 != rs1;
 }
 
-uint qHash(const RichString &rs, uint seed) Q_DECL_NOTHROW
+uint qHash(const RichString &rs, uint seed) /*Q_DECL_NOTHROW*/
 {
-    return qHash(rs.d->idKey(), seed);
+    return qHash(rs.d->idKey()/*, seed*/);
 }
 
 #ifndef QT_NO_DEBUG_STREAM

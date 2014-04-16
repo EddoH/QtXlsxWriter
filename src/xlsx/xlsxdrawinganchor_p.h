@@ -27,7 +27,7 @@
 #define QXLSX_XLSXDRAWINGANCHOR_P_H
 
 #include "xlsxglobal.h"
-
+#include <QImage>
 #include <QPoint>
 #include <QSize>
 #include <QString>

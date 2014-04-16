@@ -2,7 +2,7 @@ TARGET = QtXlsx
 
 QMAKE_DOCS = $$PWD/doc/qtxlsx.qdocconf
 
-load(qt_module)
+#load(qt_module)
 
 CONFIG += build_xlsx_lib
 include(qtxlsx.pri)

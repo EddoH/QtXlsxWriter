@@ -180,7 +180,7 @@ FormatPrivate::~FormatPrivate()
  */
 Format::Format()
 {
-    if (QMetaType::type("XlsxColor") == QMetaType::UnknownType) {
+    if (QMetaType::type("XlsxColor") == 0/*QMetaType::UnknownType*/) {
         //Fix me! Where should we put these register code?
         qRegisterMetaType<XlsxColor>("XlsxColor");
         qRegisterMetaTypeStreamOperators<XlsxColor>("XlsxColor");

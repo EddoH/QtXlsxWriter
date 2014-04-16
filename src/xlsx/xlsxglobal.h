@@ -30,6 +30,10 @@
 #define QT_END_NAMESPACE_XLSX }
 #define QTXLSX_USE_NAMESPACE using namespace QXlsx;
 
+#ifndef QStringLiteral
+    #define QStringLiteral(str) QString::fromUtf8(str)
+#endif
+
 #if !defined(QT_STATIC) && !defined(XLSX_NO_LIB)
 #  if defined(QT_BUILD_XLSX_LIB)
 #    define Q_XLSX_EXPORT Q_DECL_EXPORT

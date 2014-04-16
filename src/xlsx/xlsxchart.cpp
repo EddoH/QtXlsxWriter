@@ -204,10 +204,10 @@ bool ChartPrivate::loadXmlPlotArea(QXmlStreamReader &reader)
         if (reader.tokenType() == QXmlStreamReader::StartElement) {
             if (reader.name() == QLatin1String("layout")) {
                 //!ToDo
-            } else if (reader.name().endsWith(QLatin1String("Chart"))) {
+            } else if (reader.name().string()->endsWith(QLatin1String("Chart"))) {
                 //For pieChart, barChart, ...
                 loadXmlXxxChart(reader);
-            } else if (reader.name().endsWith(QLatin1String("Ax"))) {
+            } else if (reader.name().string()->endsWith(QLatin1String("Ax"))) {
                 //For valAx, catAx, serAx, dateAx
                 loadXmlAxis(reader);
             }
@@ -474,7 +474,7 @@ void ChartPrivate::saveXmlSer(QXmlStreamWriter &writer, XlsxSeries *ser, int id)
 
 bool ChartPrivate::loadXmlAxis(QXmlStreamReader &reader)
 {
-    Q_ASSERT(reader.name().endsWith(QLatin1String("Ax")));
+    Q_ASSERT(reader.name().string()->endsWith(QLatin1String("Ax")));
     QString name = reader.name().toString();
 
     XlsxAxis *axis = new XlsxAxis;

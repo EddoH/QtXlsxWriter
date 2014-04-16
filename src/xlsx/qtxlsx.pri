@@ -1,9 +1,13 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-QT += core gui gui-private
-!build_xlsx_lib:DEFINES += XLSX_NO_LIB
+QT += core gui
+#gui-private
+#!build_xlsx_lib:DEFINES += XLSX_NO_LIB
+DEFINES += XLSX_NO_LIB
+DEFINES += QT_BUILD_XLSX_LIB
 
+INCLUDEPATH += $$[QT_INSTALL_PREFIX]/src/3rdparty/zlib
 HEADERS += $$PWD/xlsxdocpropscore_p.h \
     $$PWD/xlsxdocpropsapp_p.h \
     $$PWD/xlsxrelationships_p.h \
@@ -45,7 +49,9 @@ HEADERS += $$PWD/xlsxdocpropscore_p.h \
     $$PWD/xlsxabstractooxmlfile_p.h \
     $$PWD/xlsxchart.h \
     $$PWD/xlsxchart_p.h \
-    $$PWD/xlsxsimpleooxmlfile_p.h
+    $$PWD/xlsxsimpleooxmlfile_p.h \
+    $$PWD/qzipwriter_p.h \
+    $$PWD/qzipreader_p.h
 
 SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxdocpropsapp.cpp \
@@ -75,5 +81,6 @@ SOURCES += $$PWD/xlsxdocpropscore.cpp \
     $$PWD/xlsxmediafile.cpp \
     $$PWD/xlsxabstractooxmlfile.cpp \
     $$PWD/xlsxchart.cpp \
-    $$PWD/xlsxsimpleooxmlfile.cpp
+    $$PWD/xlsxsimpleooxmlfile.cpp \
+    $$PWD/qzip.cpp
 

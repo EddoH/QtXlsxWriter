@@ -31,7 +31,7 @@
 #include <QXmlStreamReader>
 #include <QDir>
 #include <QFile>
-#include <QRegularExpression>
+#include <QRegExp>
 #include <QDebug>
 #include <QBuffer>
 
@@ -217,8 +217,8 @@ void SharedStrings::saveToXmlFile(QIODevice *device) const
                     writer.writeEndElement();// rPr
                 }
                 writer.writeStartElement(QStringLiteral("t"));
-                if (string.fragmentText(i).contains(QRegularExpression(QStringLiteral("^\\s")))
-                        || string.fragmentText(i).contains(QRegularExpression(QStringLiteral("\\s$")))) {
+                if (string.fragmentText(i).contains(QRegExp(QStringLiteral("^\\s")))
+                        || string.fragmentText(i).contains(QRegExp(QStringLiteral("\\s$")))) {
                     writer.writeAttribute(QStringLiteral("xml:space"), QStringLiteral("preserve"));
                 }
                 writer.writeCharacters(string.fragmentText(i));
@@ -229,8 +229,8 @@ void SharedStrings::saveToXmlFile(QIODevice *device) const
         } else {
             writer.writeStartElement(QStringLiteral("t"));
             QString pString = string.toPlainString();
-            if (pString.contains(QRegularExpression(QStringLiteral("^\\s")))
-                    || pString.contains(QRegularExpression(QStringLiteral("\\s$")))) {
+            if (pString.contains(QRegExp(QStringLiteral("^\\s")))
+                    || pString.contains(QRegExp(QStringLiteral("\\s$")))) {
                 writer.writeAttribute(QStringLiteral("xml:space"), QStringLiteral("preserve"));
             }
             writer.writeCharacters(pString);

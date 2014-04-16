@@ -26,7 +26,7 @@
 
 #include <QString>
 #include <QPoint>
-#include <QRegularExpression>
+#include <QRegExp>
 #include <QMap>
 #include <QStringList>
 #include <QColor>
@@ -100,11 +100,14 @@ QPoint xl_cell_to_rowcol(const QString &cell_str)
 {
     if (cell_str.isEmpty())
         return QPoint(-1, -1);
-    QRegularExpression re(QStringLiteral("^([A-Z]{1,3})(\\d+)$"));
-    QRegularExpressionMatch match = re.match(cell_str);
-    if (match.hasMatch()) {
-        QString col_str = match.captured(1);
-        QString row_str = match.captured(2);
+    QRegExp re(QStringLiteral("^([A-Z]{1,3})(\\d+)$"));
+   // QRegExpMatch match = re.match(cell_str);
+    if (re.indexIn(cell_str) > -1 ) {
+//        QString col_str = match.captured(1);
+//        QString row_str = match.captured(2);
+        QString col_str = re.cap(1);
+        QString row_str = re.cap(2);
+
         int col = 0;
         int expn = 0;
         for (int i=col_str.size()-1; i>-1; --i) {
@@ -137,9 +140,9 @@ QString xl_col_to_name(int col_num)
 
 int xl_col_name_to_value(const QString &col_str)
 {
-    QRegularExpression re(QStringLiteral("^([A-Z]{1,3})$"));
-    QRegularExpressionMatch match = re.match(col_str);
-    if (match.hasMatch()) {
+    QRegExp re(QStringLiteral("^([A-Z]{1,3})$"));
+//    QRegExpMatch match = re.match(col_str);
+    if (re.exactMatch(col_str)) {
         int col = 0;
         int expn = 0;
         for (int i=col_str.size()-1; i>-1; --i) {
@@ -192,10 +195,10 @@ QString createSafeSheetName(const QString &nameProposal)
         return QString();
 
     QString ret = nameProposal;
-    if (nameProposal.contains(QRegularExpression(QStringLiteral("[/\\\\?*\\][:]+"))))
-        ret.replace(QRegularExpression(QStringLiteral("[/\\\\?*\\][:]+")), QStringLiteral(" "));
-    while(ret.contains(QRegularExpression(QStringLiteral("^\\s*'\\s*|\\s*'\\s*$"))))
-        ret.remove(QRegularExpression(QStringLiteral("^\\s*'\\s*|\\s*'\\s*$")));
+    if (nameProposal.contains(QRegExp(QStringLiteral("[/\\\\?*\\][:]+"))))
+        ret.replace(QRegExp(QStringLiteral("[/\\\\?*\\][:]+")), QStringLiteral(" "));
+    while(ret.contains(QRegExp(QStringLiteral("^\\s*'\\s*|\\s*'\\s*$"))))
+        ret.remove(QRegExp(QStringLiteral("^\\s*'\\s*|\\s*'\\s*$")));
     ret = ret.trimmed();
     if (ret.size() > 31)
         ret = ret.left(31);

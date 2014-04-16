@@ -25,18 +25,18 @@
 
 #include "xlsxzipreader_p.h"
 
-#include <private/qzipreader_p.h>
-
+//#include <private/qzipreader_p.h>
+#include "qzipreader_p.h"
 namespace QXlsx {
 
 ZipReader::ZipReader(const QString &filePath) :
-    m_reader(new QZipReader(filePath))
+    m_reader(new QQZipReader(filePath))
 {
     init();
 }
 
 ZipReader::ZipReader(QIODevice *device) :
-    m_reader(new QZipReader(device))
+    m_reader(new QQZipReader(device))
 {
     init();
 }
@@ -48,8 +48,8 @@ ZipReader::~ZipReader()
 
 void ZipReader::init()
 {
-    QList<QZipReader::FileInfo> allFiles = m_reader->fileInfoList();
-    foreach (const QZipReader::FileInfo &fi, allFiles) {
+    QList<QQZipReader::FileInfo> allFiles = m_reader->fileInfoList();
+    foreach (const QQZipReader::FileInfo &fi, allFiles) {
         if (fi.isFile)
             m_filePaths.append(fi.filePath);
     }

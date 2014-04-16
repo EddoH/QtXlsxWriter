@@ -44,7 +44,7 @@
 #include <QPoint>
 #include <QFile>
 #include <QUrl>
-#include <QRegularExpression>
+#include <QRegExp>
 #include <QDebug>
 #include <QBuffer>
 #include <QXmlStreamWriter>
@@ -451,7 +451,7 @@ bool Worksheet::write(int row, int column, const QVariant &value, const Format &
         //String
         QString token = value.toString();
         bool ok;
-        QRegularExpression urlPattern(QStringLiteral("^([fh]tt?ps?://)|(mailto:)|(file://)"));
+        QRegExp urlPattern(QStringLiteral("^([fh]tt?ps?://)|(mailto:)|(file://)"));
 
         if (token.startsWith(QLatin1String("="))) {
             //convert to formula
